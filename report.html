@@ -11915,8 +11915,7 @@ The reward is not based on the light changing but whether what action is being p
 <li>num_dummies - sets number of dummy agents in the environment the default is 100</li>
 <li>grid_size   - sets the size of the grid in  (columns, rows) format. The default is (8, 6)</li>
 </ul>
-<p>In <code>environment.py</code> the <em>Enviornment</em> class method that performs an action on the agent is the <em>step</em> method.
-This function creates a time-step, updates the traffic lights as well as the primary and dummy agents.</p>
+<p>In <code>environment.py</code> the <em>Environment</em> class method that performs an action is the act method. It considers an action and performs the action if it is legal.  It then returns a reward for the agent based on traffic laws.</p>
 <p>In <code>simulator.py</code> the difference between <code>render_text()</code> <em>function</em> and <code>render()</code> <em>function</em> is that the <code>render_text()</code> displays the simulation without the GUI and instead prints the trial data to the terminal, while <code>render()</code> uses a GUI from pygame to display the simulation.</p>
 <p>In <code>planner.py</code> the <code>next_waypoint()</code> <em>function</em> will consider the <em>East-West</em> direction first.</p>
 
@@ -13699,6 +13698,8 @@ MSVJkiRJkqRamJiSJEmSJElSLUxMSZIkSZIkqRYmpiRJkiRJklQLE1OSJEmSJEmqhYkpSZIkSZIk
 <p><strong>Answer:</strong></p>
 <p>The <code>inputs</code> are relevant for <strong>safety</strong> because they dictate the environment/circumstances on which the agent will decide what to do at the appropriate step.  e.g. <code>'light'</code> dictate what violations may or may not occur while <code>'left'</code>,<code>'right'</code> and <code>'oncoming'</code>, will dictate whether an accident will or will not happen.</p>
 <p><code>'deadline'</code> and <code>'waypoint'</code> are relevant for <strong>efficiency</strong> since they encompass the time and space (L1 distance) of the environment.</p>
+<p><strong>NOTE I DID NOT USE DEADLINE IN THE MODEL AS IT HAD 14 X 5 (LENGTH X TIMESTEPS) = 70 VALUES
+THAT WOULD HAVE INCREASED THE STATE SPACE BY 70 FOLD!!! I FELT THAT WAYPOINT WOULD HAVE BEEN AN INFORMATIVE FEATURE THAT WOULD HAVE ADDRESSED THE EFFICIENCY REEQUIREMENTS.  IT TURNS OUT I WAS RIGHT AND THUS MADE A SIMPLER MODEL!</strong></p>
 
 </div>
 </div>
@@ -13732,8 +13733,9 @@ MSVJkiRJkqRamJiSJEmSJElSLUxMSZIkSZIkqRYmpiRJkiRJklQLE1OSJEmSJEmqhYkpSZIkSZIk
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p><strong>Answer:</strong>
-Waypoint = 3 options ('left', 'right', 'forward')</p>
+<p><u>**NOTE I DID NOT USE DEADLINE IN THE MODEL AS IT HAD 14 X 5 (LENGTH X TIMESTEPS) = 70 VALUES
+THAT WOULD HAVE INCREASED THE STATE SPACE BY 70 FOLD!!! I FELT THAT WAYPOINT WOULD HAVE BEEN AN INFORMATIVE FEATURE THAT WOULD HAVE ADDRESSED THE EFFICIENCY REEQUIREMENTS.  IT TURNS OUT I WAS RIGHT AND THUS MADE A SIMPLER MODEL!**</u></p>
+<p>Waypoint = 3 options ('left', 'right', 'forward')</p>
 <p>inputs {'light': light, 'oncoming': oncoming, 'left': left, 'right': right}</p>
 <p>inputs = 2 ('red', 'green') X 
          4 (None, 'left', 'right', 'forward') X 
