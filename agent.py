@@ -41,7 +41,7 @@ class LearningAgent(Agent):
         # Update additional class parameters as needed
         # If 'testing' is True, set epsilon and alpha to 0
         if not testing: #Mike's change
-            self.epsilon -= 0.001 #Mike's change
+            self.epsilon -= 0.05 #Mike's change
         else: #Mike's change
             self.epsilon = 0 #Mike's change
             self.alpha = 0 #Mike's change
@@ -119,7 +119,9 @@ class LearningAgent(Agent):
             if random.random() < self.epsilon: # Mike's change 
                 action = random.choice(self.valid_actions) # Mike's change 
             else: # Mike's change 
-                action = max(self.Q[state].iteritems(), key=operator.itemgetter(1))[0]  #Mike's change
+                maxQ = self.get_maxQ(state)
+                highQ_actions = [action for action, Qvalue in self.Q[state].iteritems() if Qvalue == maxQ]
+                action = random.choice(highQ_actions) 
         return action
 
 
